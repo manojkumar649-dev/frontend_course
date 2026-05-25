@@ -1,7 +1,19 @@
-div{
+  
+  *{
+    background-color: blue;
+  }
+  .dark{
+    color: red;
+  }
+  #h1{
+    color: darkviolet;
+  }
+
+  div{
 background-color: black;
 
 } 
+
 h1{
 color: chartreuse;
 }
@@ -17,3 +29,4 @@ footer{
  h4{
     color: deepskyblue;
  }
+ 
