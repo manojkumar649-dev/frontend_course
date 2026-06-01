@@ -1,0 +1,256 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+.head{
+    background-color: #959cd1;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+   
+
+}
+.child2{
+
+    color: white;
+    display: flex;
+   gap: 20px;
+
+  
+
+}
+.content1{
+    background-image: url(../photos/css/css.png);
+    height: 100vh;
+    background-size: cover;
+    height: 400px;
+    padding: 70px;
+}
+
+.content1 img{
+    width: 100vw;
+ 
+}
+.contentchild{
+   
+    color:white;
+    width: 700px;
+    height: 300px;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+.types{
+    color: white;
+    position: relative;
+    bottom:  100px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    left: 300px;
+    width: 200px;
+}
+.Selector{
+    color: white;
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    position: relative;
+}
+.Selector::after{
+    content: "____________";
+    color: white;
+    position: absolute;
+    bottom: 10px;
+
+}
+.selector2{
+      background-color: #e3e5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      height: 300px;
+        
+
+}
+.seltypes{
+    background-color:#d8e0ee;
+    color: white;
+    height: 200px;
+    width: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 50px;
+    padding: 20px;
+    margin-bottom: 70px;
+    transition:all 0.5s ease;
+    
+   
+  
+}
+
+.seltypes:hover{
+  transform: translateY(-10px) scale(1.03);
+   box-shadow: 0px 15px 30px rgba(0,0,0,0.25);
+
+}
+.box{
+    background-color: #020B4A;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 10px;
+    padding: 30px;
+    border-radius: 50px;
+   
+    height: 200px;
+}
+.box1{
+    padding: 30px;
+}
+.boxparent{
+   
+  display: flex;
+   background-color: #020B4A;
+   color: white;
+   gap: 20px;
+padding: 20px;
+
+}
+.boxchild{
+    background-color: #021e4b;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    gap: 10px;
+    padding: 30px;
+    transition: all 0.8s ease-in-out;
+}
+.boxchild:hover{
+     transform:  translateY(-10px) scale(1.05);
+}
+.image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #020B4A;
+    padding: 20px;
+    margin-top: 30px;
+}
+.image img{
+    border-radius: 30px;
+}
+.flex{
+  
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 30px;
+
+}
+.grid{
+    background-color: #021e4b;
+    color: white;
+    padding: 20px;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    
+
+}
+.flex2{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.grid2{
+    display: flex;
+    flex-direction: column;
+    background-color: #020B4A;
+    color: white;
+    gap: 10px;
+    padding: 50px;
+    margin-left: 20px;
+    border-radius: 30px;
+    position: relative;
+    overflow: hidden;
+
+}
+.grid2::after{
+    content: "";
+    background-color: yellow;
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    bottom: -80px;
+    right: -80px;
+    border-radius: 100px;
+
+}
+
+.grid2::before{
+    content: "";
+    background-color: rgb(56, 230, 26);
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: -80px;
+    right: -80px;
+    border-radius: 100px;
+
+}
+.grid3{
+    background-color: #020B4A;
+    color: white;
+    width: 700px;
+    height: 80px;
+    position: relative;
+    left: 280px;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    bottom: 30px;  
+    top: 10px; 
+}
+.animation{
+    background-color: #020B4A;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 40px;
+    height: 300px;
+    padding: 30px;
+    gap: 10px;
+}
