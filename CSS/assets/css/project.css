@@ -1,0 +1,55 @@
+{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+}
+
+a{
+    text-decoration: none;
+
+}
+   .navbar{
+    margin-top: 7px;
+    margin-bottom: 7px;
+    display: flex;
+    align-items: center;
+}
+.navbar span{
+    margin-right: 200px;
+    font-weight: 600;
+}
+
+img a button{
+    display: inline;
+}
+
+
+.navbar a{
+    text-decoration: none;
+    color: black;
+    margin-right: 30px;
+    font-size: 14px;
+     
+}
+    
+
+.btn{
+    margin-left: 300px;
+    gap: 10px;
+}
+
+.btn1{
+    border: none;
+    background-color: white;
+}
+.btn2{
+    padding: 8px;
+    border-width: 1px;
+    border-radius: 10px;
+    background-color: white;
+    width: 60px;

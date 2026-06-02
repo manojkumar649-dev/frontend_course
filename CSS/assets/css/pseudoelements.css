@@ -34,12 +34,12 @@ p{
     display: grid;
     padding: 40px;
     background-color: rgb(83, 82, 82);
-   margin-right: 10%;
+   margin-right:50%;
    margin-top: 2px;
    gap: 20px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     border-radius: 20px;
-    margin-right: 20%;
+    
 }
 .child img{
     border-radius: 20px;
@@ -188,5 +188,7 @@ button{
     border:1px solid orange;
 }
 
-
+.body{
+    display: flex;
+}
 
