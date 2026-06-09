@@ -254,3 +254,21 @@ a{
     color: #aaa;
     }
 
+.button{
+    background-color: rgb(21, 21, 24);
+    padding: 10px;
+    border-radius: 30px;
+
+}
+.buttoncard{
+    background-color: orange;
+    padding: 10px;
+    border-radius: 20px;
+    width: 80px;
+}
+.badge{
+    background-color: red;
+    padding: 5px;
+    border-radius: 20px;
+    width: 50px;
+}
