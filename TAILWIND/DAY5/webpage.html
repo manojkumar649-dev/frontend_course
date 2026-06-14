@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+       
+
+    <div class="min-h-screen flex items-center justify-center bg-gray-400">
+  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <h2 class="text-3xl font-bold text-center mb-6">Login</h2>
+
+    <input type="email"
+      placeholder="Email"
+      class="w-full border p-3 rounded mb-4">
+
+    <input type="password"
+      placeholder="Password"
+      class="w-full border p-3 rounded mb-4">
+
+    <button
+      class="w-full bg-blue-600 text-white p-3 rounded hover:bg-blue-700 transition">
+      Login
+    </button>
+  </div>
+</div>
+    
+      
+<div class="flex min-h-screen">
+
+  
+  <aside class="w-64 bg-gray-900 text-white p-5 hidden md:block">
+    <h2 class="text-2xl font-bold mb-6">LMS</h2>
+
+    <ul class="space-y-4">
+      <li><a href="#" class="hover:text-yellow-400">Dashboard</a></li>
+      <li><a href="#" class="hover:text-yellow-400">Courses</a></li>
+      <li><a href="#" class="hover:text-yellow-400">Profile</a></li>
+    </ul>
+  </aside>
+
+
+  <div class="flex-1">
+
+    
+    <nav class="bg-white shadow p-4 flex justify-between">
+      <h1 class="font-bold text-xl">Dashboard</h1>
+
+    
+      <div class="relative group">
+        <button class="bg-gray-200 px-4 py-2 rounded">
+          User ▼
+        </button>
+
+        <div
+          class="absolute right-0 hidden group-hover:block bg-white shadow rounded w-40">
+          <a href="#" class="block p-3 hover:bg-gray-100">Profile</a>
+          <a href="#" class="block p-3 hover:bg-gray-100">Logout</a>
+ </div>
+      </div>
+    </nav>
+
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
+
+      <div class="bg-white p-5 rounded shadow hover:shadow-xl transition">
+        <h3>Total Courses</h3>
+        <p class="text-3xl font-bold">25</p>
+      </div>
+
+      <div class="bg-white p-5 rounded shadow hover:shadow-xl transition">
+        <h3>Students</h3>
+        <p class="text-3xl font-bold">120</p>
+      </div>
+
+      <div class="bg-white p-5 rounded shadow hover:shadow-xl transition">
+        <h3>Teachers</h3>
+        <p class="text-3xl font-bold">12</p>
+      </div>
+
+      <div class="bg-white p-5 rounded shadow hover:shadow-xl transition">
+        <h3>Revenue</h3>
+        <p class="text-3xl font-bold">$5K</p>
+      </div>
+
+    </div>
+
+    <div class="p-6">
+      <div class="bg-white rounded shadow overflow-x-auto">
+        <table class="w-full">
+      <thead class="bg-gray-100">
+            <tr>
+           <th class="p-3">Student</th>
+              <th class="p-3">Course</th>
+           <th class="p-3">Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+          <tr class="border-b">
+              <td class="p-3">Manoj</td>
+            <td class="p-3">Fullstack</td>
+         <td class="p-3">Completed</td>
+            </tr>
+            <tr>
+              <td class="p-3">Kumar</td>
+         <td class="p-3">JavaScript</td>
+              <td class="p-3">Ongoing</td>
+       </tr>
+      </tbody>
+        </table>
+      </div>
+</div>
+
+  </div>
+</div>
+
+
+<section class="p-6">
+
+
+  <div class="flex flex-col md:flex-row gap-4 mb-6">
+
+    <input
+      type="text"
+      placeholder="Search Courses"
+      class="border p-3 rounded flex-1">
+
+    <select class="border p-3 rounded">
+      <option>All Categories</option>
+      <option>Frontend</option>
+      <option>Backend</option>
+      <option>Design</option>
+    </select>
+
+  </div>
+
+  
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <div class="bg-white p-5 rounded shadow hover:shadow-xl transition">
+      <h3 class="font-bold text-xl">HTML Course</h3>
+      <p>Learn HTML from basics.</p>
+    </div>
+
+    <div class="bg-white p-5 rounded shadow hover:shadow-xl transition">
+      <h3 class="font-bold text-xl">CSS Course</h3>
+      <p>Learn CSS styling.</p>
+    </div>
+
+    <div class="bg-white p-5 rounded shadow hover:shadow-xl transition">
+      <h3 class="font-bold text-xl">JavaScript</h3>
+      <p>Learn JavaScript fundamentals.</p>
+    </div>
+
+    <div class="bg-white p-5 rounded shadow hover:shadow-xl transition">
+      <h3 class="font-bold text-xl">React</h3>
+      <p>Modern frontend framework.</p>
+    </div>
+
+    <div class="bg-white p-5 rounded shadow hover:shadow-xl transition">
+      <h3 class="font-bold text-xl">Node.js</h3>
+      <p>Backend development.</p>
+    </div>
+
+    <div class="bg-white p-5 rounded shadow hover:shadow-xl transition">
+      <h3 class="font-bold text-xl">UI/UX</h3>
+      <p>Design user experiences.</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+    <section class="p-6">
+
+  <div class="bg-white rounded shadow p-6">
+
+    <h2 class="text-3xl font-bold mb-6">
+      User Profile
+    </h2>
+
+    <!-- User Details -->
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <div>
+        <h3 class="font-bold">Name</h3>
+        <p>Manoj Kumar</p>
+
+        <h3 class="font-bold mt-4">Email</h3>
+        <p>manoj@gmail.com</p>
+
+        <h3 class="font-bold mt-4">Role</h3>
+        <p>Student</p>
+      </div>
+
+      <!-- Edit Form -->
+      <div>
+
+        <input
+          type="text"
+       placeholder="Name"
+      class="w-full border p-3 rounded mb-4">
+
+        <input
+          type="email"
+     placeholder="Email"
+               class="w-full border p-3 rounded mb-4">
+
+        <button
+          class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition">
+          Update Profile
+       </button>
+
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+</body>
+</html>
