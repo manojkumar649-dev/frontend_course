@@ -48,11 +48,85 @@
      console.log(student.name);
      console.log(student.course);
      console.log(student.city);
-     console.log("studentName:", student["sudhan"]);
-     console.log( "course", student["mern"]);
-     console.log( "city", student["chennai"]);
+
+
+     console.log( student["sudhan"]);
+     console.log( student["mern"]);
+     console.log(  student["chennai"]);
       
     
+    //task5
+
+
+     const mobiles = [
+    {
+      brand: "Samsung",
+      price: 20000,
+    },
+
+    {
+      brand: "iPhone",
+      price: 80000,
+    },
+
+    {
+      brand: "OnePlus",
+      price: 35000,
+    },
+  ];
+
+  const mobileDetails = (a) => {
+    for (let m = 0; m < a.length; m++) {
+      console.log(m);
+      
+    }
+  };
+
+  mobileDetails(mobiles);
+
+
+
+
+  //   Task 6 
+
+  const movieCollection = [
+    {
+      movie: "GOAT",
+      collection: 800,
+    },
+
+    {
+      movie: "Leo",
+      collection: 600,
+    },
+
+    {
+      movie: "Master",
+      collection: 500,
+    },
+  ];
+
+
+  let total = 0;
+  let highest = movieCollection[0].collection;
+  let heighestMovieName = movieCollection[0].movie;
+  const movieDetails = (mov) => {
+    for (let c = 0; c < mov.length; c++) {
+      total += mov[c].collection;
+
+      if (mov[c].collection > highest) {
+        highest = mov[c].collection;
+       heighestMovieName = mov[c].movie;
+      
+        
+      }
+    }
+   
     
-    
+    console.log("Total collection", total);
+    console.log("Highest collection", highest);
+    console.log("{heighestMovieName} is the highest collection as {highest}");
+  };
+
+  movieDetails(movieCollection);
 </script>
