@@ -1,64 +1,64 @@
 <script>
 
 
-    //task1
+  //task1
 
-    let movielist=["Goat","Leo","Master"];
-    movielist.push("Ghilli");
-    console.log(movielist);
-
-
-    //final array
+  let movielist = ["Goat", "Leo", "Master"];
+  movielist.push("Ghilli");
+  console.log(movielist);
 
 
-    movielist.pop();
-    console.log(movielist);
-    
-    
-    //task2
-
-    let heros=["ajith","surya","sk"];
-    heros.unshift("vijay");
-    console.log(heros);
-    
-    heros.shift();
-    console.log(heros);
+  //final array
 
 
-    //task3
-
-    let fruits=["apple","mango","orange"];
-    fruits.push("banana","grapes");
-    console.log(fruits);
-
-    fruits.pop();
-    console.log(fruits);
-
-    fruits.unshift("pineapple");
-    console.log(fruits);
-    fruits.shift();
-    console.log(fruits);
-    
-
-    //task4
-
-      const student = {name: "Sudhan",course: "MERN",city: "Chennai", };
-
-  
-     console.log(student.name);
-     console.log(student.course);
-     console.log(student.city);
+  movielist.pop();
+  console.log(movielist);
 
 
-     console.log( student["sudhan"]);
-     console.log( student["mern"]);
-     console.log(  student["chennai"]);
-      
-    
-    //task5
+  //task2
+
+  let heros = ["ajith", "surya", "sk"];
+  heros.unshift("vijay");
+  console.log(heros);
+
+  heros.shift();
+  console.log(heros);
 
 
-     const mobiles = [
+  //task3
+
+  let fruits = ["apple", "mango", "orange"];
+  fruits.push("banana", "grapes");
+  console.log(fruits);
+
+  fruits.pop();
+  console.log(fruits);
+
+  fruits.unshift("pineapple");
+  console.log(fruits);
+  fruits.shift();
+  console.log(fruits);
+
+
+  //task4
+
+  const student = { name: "Sudhan", course: "MERN", city: "Chennai", };
+
+
+  console.log(student.name);
+  console.log(student.course);
+  console.log(student.city);
+
+
+  console.log(student["sudhan"]);
+  console.log(student["mern"]);
+  console.log(student["chennai"]);
+
+
+  //task5
+
+
+  const mobiles = [
     {
       brand: "Samsung",
       price: 20000,
@@ -78,7 +78,7 @@
   const mobileDetails = (a) => {
     for (let m = 0; m < a.length; m++) {
       console.log(m);
-      
+
     }
   };
 
@@ -116,13 +116,13 @@
 
       if (mov[c].collection > highest) {
         highest = mov[c].collection;
-       heighestMovieName = mov[c].movie;
-      
-        
+        heighestMovieName = mov[c].movie;
+
+
       }
     }
-   
-    
+
+
     console.log("Total collection", total);
     console.log("Highest collection", highest);
     console.log("{heighestMovieName} is the highest collection as {highest}");
