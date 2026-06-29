@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//task1
+
+const heroes = [ "Vijay","Ajith","Suriya"];
+
+const newhero=heroes.map((name)=>{
+   
+   return name.toUpperCase()
+    
+    
+   
+})
+
+//task2
+
+console.log(newhero);
+
+const collections = [100,200,300,400];
+
+const newcollection=collections.map((values)=>{
+    return values*10
+})
+console.log(newcollection);
+
+//task3
+
+const movies = ["GOAT","Leo","Master"];
+
+const newmovies=movies.map((names)=>{
+
+    return `movies:${names}`
+
+})
+console.log(newmovies);
+
+//task4
+const collectiones = [100,500,800,200,900];
+
+const newcollectiones=collectiones.filter((values)=>{
+     
+         return values>500
+
+
+})
+console.log(newcollectiones);
+
+//task5
+
+const marks = [35,80,20,90,45];
+
+const newmark=marks.filter((mark)=>{
+
+    return mark>=35
+
+})
+console.log(newmark);
+
+//task6
+
+const heroe = ["Vijay","Ajith","SK","Suriya"];
+const newheros=heroe.filter((names)=>{
+    return names.length>4    
+
+})
+console.log(newheros);
+
+//task7
+
+const hero = [ "Vijay","Ajith","Suriya"];
+
+const newher=hero.find(name=>{
+    return name=="Ajith"
+})
+console.log(newher);
+
+//task8
+const collectionsamount = [100,500,800,200];
+
+const newcollectionamount=collectionsamount.find(amount=>{
+    return amount>400
+})
+console.log(newcollectionamount);
+
+//task9
+
+const heroesname = ["Vijay","Ajith","Suriya"];
+const newheroname=heroesname.findIndex(name=>{
+    return name=="Suriya"
+})
+console.log(newheroname);
+
+//task10
+
+const moviesname = [
+
+   "GOAT",
+
+   "Leo",
+
+   "Master"
+];
+
+const newmoviesname=moviesname.findIndex(name=>{
+    return name=="Leo"
+})
+console.log(newmoviesname);
+
+//task11
+const studentmarks = [
+
+   35,
+
+   80,
+
+   20,
+
+   90
+];
+
+const newstudentmark=studentmarks.some(mark=>{
+
+    return mark>=35 
+
+})
+console.log(newstudentmark);
+
+//task12
+const totalcollections = [
+
+   100,
+
+   200,
+
+   900
+];
+
+const newtotalcollection=totalcollections.some(amount=>{
+    return amount>800
+})
+console.log(newtotalcollection);
+
+//task13
+const allmarks = [
+
+   50,
+
+   70,
+
+   90,
+
+   40
+];
+const newallmark=allmarks.every(mark=>{
+    return mark>=35
+})
+console.log(newallmark);
+
+//task14
+const ages = [
+
+   20,
+
+   25,
+
+   30,
+
+   35
+];
+
+const newage=ages.every(num=>{
+    return num>18
+})
+console.log(newage);
+
+//task15
+const moviecollections = [
+
+   100,
+
+   200,
+
+   300,
+
+   400
+]
+const totalmoviecollection=moviecollections.reduce((pervalue,currentvalue)=>{
+                    return pervalue+currentvalue
+},0);
+console.log(totalmoviecollection);
+
+//task18
+const students = [
+
+   {
+      id:1,
+      name:"Sudhan"
+   },
+
+   {
+      id:2,
+      name:"Rahul"
+   }
+];
+
+const newstudent=students.map(value=>{
+    return value.name
+})
+console.log(newstudent);
+
+//task19
+const namestudents = [
+
+   {
+      id:1,
+      age:20
+   },
+
+   {
+      id:2,
+      age:30
+   },
+
+   {
+      id:3,
+      age:18
+   }
+];
+const newnamestudents=namestudents.filter((value)=>{
+   
+  return value.age>20
+   
+    
+})
+console.log(newnamestudents);
+
+//task20
+
+const nostudents = [
+
+   {
+      id:1,
+      name:"Sudhan"
+   },
+
+   {
+      id:2,
+      name:"Rahul"
+   }
+];
+const newnostudent=nostudents.find(value=>{
+    return value.id==2
+})
+
+console.log(newnostudent);
+
+//task21
+
+const number=[100,500,800,200]
+
+const highestnumber=number.reduce((prenum,curnum)=>{
+   
+    if(prenum<curnum){
+       
+        return curnum
+
+    }else{
+
+        return prenum
+    }
+})
+console.log(highestnumber);
+
+//task22
+
+const numbesr=[100,500,800,200]
+
+const lowestnumber=number.reduce((prenum,curnum)=>{
+  
+    if(prenum<curnum){
+
+    return prenum
+   }
+})
+
+console.log(lowestnumber);
+
+//task23
+
+const num=[10,15,20,25,30]
+
+const newnum=num.filter(numbers=>{
+    if (numbers %2==0){
+        return  numbers
+    }
+})
+console.log(newnum);
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
