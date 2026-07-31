@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SubTrack Dashboard</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body class="bg-gray-100">
+
+<div class="flex h-screen">
+
+    <!-- Sidebar -->
+    <aside id="sidebar"
+        class="fixed md:static w-64 h-full bg-blue-600 text-white transform -translate-x-full md:translate-x-0 transition duration-300 z-50">
+
+        <div class="p-6 text-3xl font-bold border-b border-slate-700">
+            SubTrack
+        </div>
+
+        <nav class="mt-6">
+
+            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-blue-600">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+
+            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-blue-600">
+                <i class="fa-solid fa-users"></i>
+                Customers
+            </a>
+
+            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-blue-600">
+                <i class="fa-solid fa-credit-card"></i>
+                Subscriptions
+            </a>
+
+            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-blue-600">
+                <i class="fa-solid fa-file-invoice"></i>
+                Invoices
+            </a>
+
+            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-blue-600">
+                <i class="fa-solid fa-wallet"></i>
+                Payments
+            </a>
+
+            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-blue-600">
+                <i class="fa-solid fa-chart-line"></i>
+                Reports
+            </a>
+
+            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-blue-600">
+                <i class="fa-solid fa-gear"></i>
+                Settings
+            </a>
+
+        </nav>
+
+    </aside>
+
+    <!-- Main -->
+    <div class="flex-1 overflow-auto">
+
+        <!-- Navbar -->
+        <header class="bg-white shadow px-6 py-4 flex justify-between items-center">
+
+            <div class="flex items-center gap-4">
+
+                <button onclick="toggleSidebar()"
+                    class="md:hidden text-2xl">
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+                <h1 class="text-2xl font-bold">
+                    Dashboard
+                </h1>
+
+            </div>
+
+            <div class="flex items-center gap-4">
+
+                <div class="relative">
+
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        class="border rounded-lg px-4 py-2">
+
+                </div>
+
+                <i class="fa-solid fa-bell text-xl cursor-pointer"></i>
+
+                <img
+                    src=""
+                    class="rounded-full">
+
+            </div>
+
+        </header>
+
+        <!-- Cards -->
+
+        <section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 p-6">
+
+            <div class="bg-white rounded-xl shadow p-6">
+                <p class="text-gray-500">Total Revenue</p>
+                <h2 class="text-3xl font-bold mt-2">₹1,25,000</h2>
+                <p class="text-green-600 mt-2">+18%</p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow p-6">
+                <p class="text-gray-500">Active Plans</p>
+                <h2 class="text-3xl font-bold mt-2">152</h2>
+                <p class="text-blue-600 mt-2">Running</p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow p-6">
+                <p class="text-gray-500">Expired</p>
+                <h2 class="text-3xl font-bold mt-2">18</h2>
+                <p class="text-red-600 mt-2">Renew Soon</p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow p-6">
+                <p class="text-gray-500">Customers</p>
+                <h2 class="text-3xl font-bold mt-2">320</h2>
+                <p class="text-purple-600 mt-2">Registered</p>
+            </div>
+
+        </section>
+
+        <!-- Table -->
+
+        <section class="px-6">
+
+            <div class="bg-white rounded-xl shadow">
+
+                <div class="p-6 border-b">
+
+                    <h2 class="text-xl font-bold">
+                        Recent Subscriptions
+                    </h2>
+
+                </div>
+
+                <div class="overflow-x-auto">
+
+                    <table class="w-full">
+
+                        <thead class="bg-gray-100">
+
+                            <tr>
+
+                                <th class="p-4 text-left">Customer</th>
+                                <th class="p-4 text-left">Plan</th>
+                                <th class="p-4 text-left">Status</th>
+                                <th class="p-4 text-left">Amount</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="tableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</div>
+
+<script>
+
+const subscriptions=[
+
+{
+customer:"Manoj",
+plan:"Netflix Premium",
+status:"Active",
+amount:"₹649"
+},
+
+{
+customer:"Rahul",
+plan:"Spotify Family",
+status:"Pending",
+amount:"₹179"
+},
+
+{
+customer:"Priya",
+plan:"Adobe Creative Cloud",
+status:"Active",
+amount:"₹1999"
+},
+
+{
+customer:"Arun",
+plan:"Microsoft 365",
+status:"Expired",
+amount:"₹599"
+}
+
+];
+
+const table=document.getElementById("tableBody");
+
+subscriptions.forEach(item=>{
+
+table.innerHTML+=`
+
+<tr class="border-b hover:bg-gray-50">
+
+<td class="p-4">${item.customer}</td>
+
+<td class="p-4">${item.plan}</td>
+
+<td class="p-4">
+
+<span class="px-3 py-1 rounded-full
+${item.status==="Active"
+?"bg-green-100 text-green-600"
+:item.status==="Pending"
+?"bg-yellow-100 text-yellow-600"
+:"bg-red-100 text-red-600"}">
+
+${item.status}
+
+</span>
+
+</td>
+
+<td class="p-4">${item.amount}</td>
+
+</tr>
+
+`;
+
+});
+
+function toggleSidebar(){
+
+document.getElementById("sidebar").classList.toggle("-translate-x-full");
+
+}
+
+</script>
+
+</body>
+</html>
