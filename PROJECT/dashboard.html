@@ -3,260 +3,519 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>SubTrack Dashboard</title>
+<title>FITZONE GYM</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<style>
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#0f172a;
+}
+
+.hero{
+background:linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.75)),
+url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1500&q=80");
+background-size:cover;
+background-position:center;
+}
+
+.card:hover{
+transform:translateY(-8px);
+transition:.4s;
+}
+
+</style>
 
 </head>
+<body class="text-white">
 
-<body class="bg-gray-100">
+<!-- NAVBAR -->
 
-<div class="flex h-screen">
+<nav class="fixed top-0 w-full bg-black/80 backdrop-blur-lg z-50">
+<div class="max-w-7xl mx-auto flex justify-between items-center p-5">
 
-    <!-- Sidebar -->
-    <aside id="sidebar"
-        class="fixed md:static w-64 h-full bg-blue-600 text-white transform -translate-x-full md:translate-x-0 transition duration-300 z-50">
+<h1 class="text-3xl font-bold text-red-500">
+FITZONE
+</h1>
 
-        <div class="p-6 text-3xl font-bold border-b border-slate-700">
-            SubTrack
-        </div>
+<ul class="hidden md:flex gap-8 font-semibold">
+<li><a href="#home" class="hover:text-red-500">Home</a></li>
+<li><a href="#about" class="hover:text-red-500">About</a></li>
+<li><a href="#plans" class="hover:text-red-500">Plans</a></li>
+<li><a href="#trainer" class="hover:text-red-500">Trainers</a></li>
+<li><a href="#contact" class="hover:text-red-500">Contact</a></li>
+</ul>
 
-        <nav class="mt-6">
-
-            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-blue-600">
-                <i class="fa-solid fa-house"></i>
-                Dashboard
-            </a>
-
-            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-blue-600">
-                <i class="fa-solid fa-users"></i>
-                Customers
-            </a>
-
-            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-blue-600">
-                <i class="fa-solid fa-credit-card"></i>
-                Subscriptions
-            </a>
-
-            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-blue-600">
-                <i class="fa-solid fa-file-invoice"></i>
-                Invoices
-            </a>
-
-            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-blue-600">
-                <i class="fa-solid fa-wallet"></i>
-                Payments
-            </a>
-
-            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-blue-600">
-                <i class="fa-solid fa-chart-line"></i>
-                Reports
-            </a>
-
-            <a href="#" class="flex items-center gap-3 px-6 py-3 hover:bg-blue-600">
-                <i class="fa-solid fa-gear"></i>
-                Settings
-            </a>
-
-        </nav>
-
-    </aside>
-
-    <!-- Main -->
-    <div class="flex-1 overflow-auto">
-
-        <!-- Navbar -->
-        <header class="bg-white shadow px-6 py-4 flex justify-between items-center">
-
-            <div class="flex items-center gap-4">
-
-                <button onclick="toggleSidebar()"
-                    class="md:hidden text-2xl">
-
-                    <i class="fa-solid fa-bars"></i>
-
-                </button>
-
-                <h1 class="text-2xl font-bold">
-                    Dashboard
-                </h1>
-
-            </div>
-
-            <div class="flex items-center gap-4">
-
-                <div class="relative">
-
-                    <input
-                        type="text"
-                        placeholder="Search..."
-                        class="border rounded-lg px-4 py-2">
-
-                </div>
-
-                <i class="fa-solid fa-bell text-xl cursor-pointer"></i>
-
-                <img
-                    src=""
-                    class="rounded-full">
-
-            </div>
-
-        </header>
-
-        <!-- Cards -->
-
-        <section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 p-6">
-
-            <div class="bg-white rounded-xl shadow p-6">
-                <p class="text-gray-500">Total Revenue</p>
-                <h2 class="text-3xl font-bold mt-2">₹1,25,000</h2>
-                <p class="text-green-600 mt-2">+18%</p>
-            </div>
-
-            <div class="bg-white rounded-xl shadow p-6">
-                <p class="text-gray-500">Active Plans</p>
-                <h2 class="text-3xl font-bold mt-2">152</h2>
-                <p class="text-blue-600 mt-2">Running</p>
-            </div>
-
-            <div class="bg-white rounded-xl shadow p-6">
-                <p class="text-gray-500">Expired</p>
-                <h2 class="text-3xl font-bold mt-2">18</h2>
-                <p class="text-red-600 mt-2">Renew Soon</p>
-            </div>
-
-            <div class="bg-white rounded-xl shadow p-6">
-                <p class="text-gray-500">Customers</p>
-                <h2 class="text-3xl font-bold mt-2">320</h2>
-                <p class="text-purple-600 mt-2">Registered</p>
-            </div>
-
-        </section>
-
-        <!-- Table -->
-
-        <section class="px-6">
-
-            <div class="bg-white rounded-xl shadow">
-
-                <div class="p-6 border-b">
-
-                    <h2 class="text-xl font-bold">
-                        Recent Subscriptions
-                    </h2>
-
-                </div>
-
-                <div class="overflow-x-auto">
-
-                    <table class="w-full">
-
-                        <thead class="bg-gray-100">
-
-                            <tr>
-
-                                <th class="p-4 text-left">Customer</th>
-                                <th class="p-4 text-left">Plan</th>
-                                <th class="p-4 text-left">Status</th>
-                                <th class="p-4 text-left">Amount</th>
-
-                            </tr>
-
-                        </thead>
-
-                        <tbody id="tableBody">
-
-                        </tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </div>
+<button id="menuBtn" class="md:hidden text-3xl">
+☰
+</button>
 
 </div>
 
+<div id="mobileMenu" class="hidden bg-gray-900 text-center p-5 space-y-4 md:hidden">
+<a href="#home" class="block">Home</a>
+<a href="#about" class="block">About</a>
+<a href="#plans" class="block">Plans</a>
+<a href="#trainer" class="block">Trainer</a>
+<a href="#contact" class="block">Contact</a>
+</div>
+
+</nav>
+
+<!-- HERO -->
+
+<section id="home" class="hero h-screen flex items-center">
+
+<div class="max-w-7xl mx-auto px-6">
+
+<h2 class="text-6xl font-black leading-tight">
+BUILD YOUR <br>
+<span class="text-red-500">
+DREAM BODY
+</span>
+</h2>
+
+<p class="text-gray-300 mt-6 text-lg max-w-xl">
+Join the best fitness center with world-class trainers,
+modern equipment and affordable membership.
+</p>
+
+<div class="mt-8 flex gap-5">
+
+<button class="bg-red-500 px-8 py-4 rounded-full hover:bg-red-700">
+            <a href="../PROJECT/gym_form.html"><p>
+               JOIN NOW
+            </p></a>
+</button>
+
+<button class="border px-8 py-4 rounded-full hover:bg-white hover:text-black">
+Learn More
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- STATS -->
+
+<section class="py-16">
+
+<div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-8 text-center">
+
+<div>
+<h2 class="text-5xl text-red-500 counter" data-target="1500">0</h2>
+<p>Members</p>
+</div>
+
+<div>
+<h2 class="text-5xl text-red-500 counter" data-target="25">0</h2>
+<p>Professional Trainers</p>
+</div>
+
+<div>
+<h2 class="text-5xl text-red-500 counter" data-target="10">0</h2>
+<p>Years Experience</p>
+</div>
+
+<div>
+<h2 class="text-5xl text-red-500 counter" data-target="24">0</h2>
+<p>Open Hours</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about" class="py-20">
+
+<div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center px-6">
+
+<img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80"
+class="rounded-xl shadow-2xl">
+
+<div>
+
+<h2 class="text-4xl font-bold mb-6">
+Why Choose Us?
+</h2>
+
+<p class="text-gray-300 leading-8">
+Our gym offers premium equipment, certified trainers,
+personal fitness plans, yoga sessions, cardio workouts,
+weight training and nutritional guidance.
+</p>
+
+<div class="grid grid-cols-2 gap-4 mt-8">
+
+<div class="bg-gray-800 p-5 rounded-lg">
+🏋️ Modern Equipment
+</div>
+
+<div class="bg-gray-800 p-5 rounded-lg">
+💪 Personal Trainer
+</div>
+
+<div class="bg-gray-800 p-5 rounded-lg">
+🥗 Diet Plan
+</div>
+
+<div class="bg-gray-800 p-5 rounded-lg">
+🕒 24 Hours
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PLANS -->
+
+<section id="plans" class="py-20 bg-gray-900">
+
+<h2 class="text-center text-5xl font-bold mb-16">
+Membership Plans
+</h2>
+
+<div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 px-6">
+
+<div class="card bg-gray-800 rounded-xl p-8 text-center">
+<h2 class="text-3xl font-bold">Basic</h2>
+<h1 class="text-5xl mt-6 text-red-500">₹999</h1>
+<p class="my-6">Monthly</p>
+
+<ul class="space-y-3">
+<li>Gym Access</li>
+<li>Locker</li>
+<li>Cardio</li>
+</ul>
+
+<button class="mt-8 bg-red-500 w-full py-3 rounded-lg">
+Choose Plan
+</button>
+
+</div>
+
+<div class="card bg-red-500 rounded-xl p-8 text-center scale-105">
+
+<h2 class="text-3xl font-bold">Premium</h2>
+
+<h1 class="text-5xl mt-6">
+₹1999
+</h1>
+
+<p class="my-6">Monthly</p>
+
+<ul class="space-y-3">
+<li>Everything Included</li>
+<li>Personal Trainer</li>
+<li>Diet Plan</li>
+</ul>
+
+<button class="mt-8 bg-white text-black w-full py-3 rounded-lg">
+            <a href="../PROJECT/payment.html"><p>
+                 CHOOSE PLAN
+            </p></a>
+</button>
+
+</div>
+
+<div class="card bg-gray-800 rounded-xl p-8 text-center">
+
+<h2 class="text-3xl font-bold">
+Elite
+</h2>
+
+<h1 class="text-5xl mt-6 text-red-500">
+₹2999
+</h1>
+
+<p class="my-6">
+Monthly
+</p>
+
+<ul class="space-y-3">
+<li>VIP Access</li>
+<li>Spa</li>
+<li>Unlimited Classes</li>
+</ul>
+
+<button class="mt-8 bg-red-500 w-full py-3 rounded-lg">
+Choose Plan
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- BMI -->
+
+<section class="py-20">
+
+<div class="max-w-xl mx-auto bg-gray-900 rounded-xl p-10">
+
+<h2 class="text-center text-4xl font-bold mb-8">
+BMI Calculator
+</h2>
+
+<input id="weight" type="number" placeholder="Weight (kg)"
+class="w-full p-3 rounded bg-gray-800 mb-4">
+
+<input id="height" type="number" placeholder="Height (cm)"
+class="w-full p-3 rounded bg-gray-800 mb-6">
+
+<button onclick="calculateBMI()"
+class="bg-red-500 w-full py-3 rounded">
+Calculate
+</button>
+
+<h2 id="result" class="text-center mt-8 text-2xl"></h2>
+
+</div>
+
+</section>
+
+<!-- TRAINERS -->
+
+<section id="trainer" class="py-20 bg-gray-900">
+
+<h2 class="text-center text-5xl font-bold mb-16">
+Our Trainers
+</h2>
+
+<div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 px-6">
+
+<div class="card bg-gray-800 rounded-xl overflow-hidden">
+
+<img src="">
+
+<div class="p-6">
+
+<h2 class="text-2xl font-bold">
+David
+</h2>
+
+<p class="text-red-500">
+Strength Coach
+</p>
+
+</div>
+
+</div>
+
+<div class="card bg-gray-800 rounded-xl overflow-hidden">
+
+<img src="">
+
+<div class="p-6">
+
+<h2 class="text-2xl font-bold">
+Sophia
+</h2>
+
+<p class="text-red-500">
+Yoga Trainer
+</p>
+
+</div>
+
+</div>
+
+<div class="card bg-gray-800 rounded-xl overflow-hidden">
+
+<img src="">
+
+<div class="p-6">
+
+<h2 class="text-2xl font-bold">
+James
+</h2>
+
+<p class="text-red-500">
+Fitness Coach
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- TESTIMONIAL -->
+
+<section class="py-20">
+
+<div class="max-w-4xl mx-auto text-center">
+
+<h2 class="text-5xl font-bold mb-12">
+Testimonials
+</h2>
+
+<p id="testimonial" class="text-2xl text-gray-300 italic">
+"The best gym I've ever joined!"
+</p>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact" class="py-20 bg-gray-900">
+
+<div class="max-w-4xl mx-auto">
+
+<h2 class="text-center text-5xl font-bold mb-10">
+Contact Us
+</h2>
+
+<div class="grid md:grid-cols-2 gap-8">
+
+<input class="p-4 rounded bg-gray-800" placeholder="Name">
+
+<input class="p-4 rounded bg-gray-800" placeholder="Email">
+
+<textarea class="md:col-span-2 p-4 rounded bg-gray-800 h-40"
+placeholder="Message"></textarea>
+
+<button class="bg-red-500 py-4 rounded md:col-span-2">
+Send Message
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<footer class="bg-black py-8 text-center">
+© 2026 FITZONE GYM. All Rights Reserved.
+</footer>
+
+<button id="topBtn"
+class="fixed bottom-6 right-6 bg-red-500 p-4 rounded-full hidden">
+⬆
+</button>
+
 <script>
 
-const subscriptions=[
+const menuBtn=document.getElementById("menuBtn");
+const mobile=document.getElementById("mobileMenu");
 
-{
-customer:"Manoj",
-plan:"Netflix Premium",
-status:"Active",
-amount:"₹649"
-},
-
-{
-customer:"Rahul",
-plan:"Spotify Family",
-status:"Pending",
-amount:"₹179"
-},
-
-{
-customer:"Priya",
-plan:"Adobe Creative Cloud",
-status:"Active",
-amount:"₹1999"
-},
-
-{
-customer:"Arun",
-plan:"Microsoft 365",
-status:"Expired",
-amount:"₹599"
+menuBtn.onclick=()=>{
+mobile.classList.toggle("hidden");
 }
 
+function calculateBMI(){
+
+let w=document.getElementById("weight").value;
+
+let h=document.getElementById("height").value/100;
+
+let bmi=(w/(h*h)).toFixed(1);
+
+let msg="";
+
+if(bmi<18.5)
+msg="Underweight";
+
+else if(bmi<25)
+msg="Normal";
+
+else if(bmi<30)
+msg="Overweight";
+
+else
+msg="Obese";
+
+document.getElementById("result").innerHTML=
+`BMI : ${bmi}<br>${msg}`;
+
+}
+
+const testimonials=[
+"The best gym I've ever joined!",
+"Excellent trainers and modern equipment.",
+"I lost 12kg in 4 months!",
+"Affordable membership with amazing service."
 ];
 
-const table=document.getElementById("tableBody");
+let i=0;
 
-subscriptions.forEach(item=>{
+setInterval(()=>{
 
-table.innerHTML+=`
+i=(i+1)%testimonials.length;
 
-<tr class="border-b hover:bg-gray-50">
+document.getElementById("testimonial").innerHTML=testimonials[i];
 
-<td class="p-4">${item.customer}</td>
+},3000);
 
-<td class="p-4">${item.plan}</td>
+const counters=document.querySelectorAll(".counter");
 
-<td class="p-4">
+counters.forEach(counter=>{
 
-<span class="px-3 py-1 rounded-full
-${item.status==="Active"
-?"bg-green-100 text-green-600"
-:item.status==="Pending"
-?"bg-yellow-100 text-yellow-600"
-:"bg-red-100 text-red-600"}">
+let update=()=>{
 
-${item.status}
+let target=+counter.dataset.target;
 
-</span>
+let count=+counter.innerText;
 
-</td>
+let inc=target/100;
 
-<td class="p-4">${item.amount}</td>
+if(count<target){
 
-</tr>
+counter.innerText=Math.ceil(count+inc);
 
-`;
+setTimeout(update,20);
+
+}else{
+
+counter.innerText=target;
+
+}
+
+}
+
+update();
 
 });
 
-function toggleSidebar(){
+let topBtn=document.getElementById("topBtn");
 
-document.getElementById("sidebar").classList.toggle("-translate-x-full");
+window.onscroll=function(){
+
+if(document.documentElement.scrollTop>300){
+
+topBtn.classList.remove("hidden");
+
+}else{
+
+topBtn.classList.add("hidden");
+
+}
+
+}
+
+topBtn.onclick=function(){
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
 

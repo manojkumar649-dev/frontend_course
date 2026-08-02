@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FitZone Gym Registration</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body{
+      background: linear-gradient(to right,#111827,#1f2937,#000);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center p-6">
+
+<div class="w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden">
+
+<div class="grid md:grid-cols-2">
+
+<!-- Left -->
+<div class="bg-black text-white p-10 flex flex-col justify-center">
+
+<h1 class="text-4xl font-bold mb-4">
+💪 FitZone Gym
+</h1>
+
+<p class="text-gray-300 leading-7">
+Start your fitness journey today.
+Register now and become the strongest version of yourself.
+</p>
+
+<div class="mt-8 space-y-3">
+
+<div class="flex items-center gap-3">
+<span>🏋️</span>
+<span>Modern Equipment</span>
+</div>
+
+<div class="flex items-center gap-3">
+<span>🥗</span>
+<span>Diet Guidance</span>
+</div>
+
+<div class="flex items-center gap-3">
+<span>👨‍🏫</span>
+<span>Professional Trainers</span>
+</div>
+
+<div class="flex items-center gap-3">
+<span>📅</span>
+<span>Flexible Membership</span>
+</div>
+
+</div>
+
+</div>
+
+<!-- Right -->
+<div class="p-8">
+
+<h2 class="text-3xl font-bold text-center mb-6">
+Gym Registration Form
+</h2>
+
+<form id="gymForm" class="space-y-4">
+
+<input
+type="text"
+id="name"
+placeholder="Full Name"
+class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-green-500 outline-none"
+required>
+
+<input
+type="email"
+id="email"
+placeholder="Email Address"
+class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-green-500 outline-none"
+required>
+
+<input
+type="tel"
+id="phone"
+placeholder="Phone Number"
+class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-green-500 outline-none"
+required>
+
+<input
+type="number"
+id="age"
+placeholder="Age"
+class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-green-500 outline-none"
+required>
+
+<select
+id="gender"
+class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-green-500 outline-none"
+required>
+
+<option value="">Select Gender</option>
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+
+</select>
+
+<select
+id="plan"
+class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-green-500 outline-none"
+required>
+
+<option value="">Choose Membership</option>
+<option>1 Month</option>
+<option>3 Months</option>
+<option>6 Months</option>
+<option>1 Year</option>
+
+</select>
+
+<textarea
+id="goal"
+rows="3"
+placeholder="Fitness Goal"
+class="w-full border rounded-lg p-3 focus:ring-2 focus:ring-green-500 outline-none"></textarea>
+
+<button
+class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg text-lg font-semibold transition">
+
+Join Now
+
+</button>
+
+</form>
+
+<div
+id="success"
+class="hidden mt-6 bg-green-100 border border-green-400 text-green-700 p-4 rounded-lg">
+
+✅ Registration Successful!
+Welcome to FitZone Gym.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const form=document.getElementById("gymForm");
+const success=document.getElementById("success");
+
+form.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let member={
+
+name:name.value,
+email:email.value,
+phone:phone.value,
+age:age.value,
+gender:gender.value,
+plan:plan.value,
+goal:goal.value
+
+};
+
+console.log(member);
+
+success.classList.remove("hidden");
+
+form.reset();
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SubTrack - Subscription Billing Management</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+body{
+font-family:Arial, Helvetica, sans-serif;
+}
+</style>
+
+</head>
+
+<body class="bg-gray-100">
+
+<div class="flex min-h-screen">
+
+<!-- Sidebar -->
+
+<div class="w-64 bg-slate-900 text-white p-6 hidden md:block">
+
+<h1 class="text-3xl font-bold mb-10 text-center">
+SubTrack
+</h1>
+
+<ul class="space-y-5">
+
+<li class="bg-blue-600 p-3 rounded cursor-pointer">
+Dashboard
+</li>
+
+<li class="hover:bg-slate-700 p-3 rounded cursor-pointer">
+Subscriptions
+</li>
+
+<li class="hover:bg-slate-700 p-3 rounded cursor-pointer">
+Billing
+</li>
+
+<li class="hover:bg-slate-700 p-3 rounded cursor-pointer">
+Reports
+</li>
+
+<li class="hover:bg-slate-700 p-3 rounded cursor-pointer">
+Settings
+</li>
+
+</ul>
+
+</div>
+
+<!-- Main -->
+
+<div class="flex-1">
+
+<!-- Navbar -->
+
+<div class="bg-white shadow p-5 flex justify-between items-center">
+
+<h2 class="text-2xl font-bold">
+Subscription Billing Dashboard
+</h2>
+
+<div class="flex gap-3">
+
+<input
+id="search"
+type="text"
+placeholder="Search..."
+class="border rounded-lg px-4 py-2"
+/>
+
+<button
+onclick="openModal()"
+class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700">
+Add Subscription
+</button>
+
+</div>
+
+</div>
+
+<!-- Cards -->
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
+
+<div class="bg-white rounded-xl shadow p-6">
+
+<h3 class="text-gray-500">
+Total Plans
+</h3>
+
+<h1 id="totalPlans" class="text-4xl font-bold mt-3">
+0
+</h1>
+
+</div>
+
+<div class="bg-white rounded-xl shadow p-6">
+
+<h3 class="text-gray-500">
+Monthly Revenue
+</h3>
+
+<h1 id="monthlyRevenue" class="text-4xl font-bold mt-3">
+₹0
+</h1>
+
+</div>
+
+<div class="bg-white rounded-xl shadow p-6">
+
+<h3 class="text-gray-500">
+Active Users
+</h3>
+
+<h1 id="activeUsers" class="text-4xl font-bold mt-3">
+0
+</h1>
+
+</div>
+
+<div class="bg-white rounded-xl shadow p-6">
+
+<h3 class="text-gray-500">
+Expired
+</h3>
+
+<h1 id="expiredPlans" class="text-4xl font-bold mt-3">
+0
+</h1>
+
+</div>
+
+</div>
+
+<!-- Table -->
+
+<div class="p-6">
+
+<div class="bg-white rounded-xl shadow overflow-auto">
+
+<table class="w-full">
+
+<thead class="bg-slate-900 text-white">
+
+<tr>
+
+<th class="p-4 text-left">
+Customer
+</th>
+
+<th class="p-4">
+Plan
+</th>
+
+<th class="p-4">
+Price
+</th>
+
+<th class="p-4">
+Status
+</th>
+
+<th class="p-4">
+Action
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="tableBody">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Modal -->
+
+<div
+id="modal"
+class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center">
+
+<div class="bg-white p-6 rounded-xl w-96">
+
+<h2 class="text-2xl font-bold mb-5">
+Add Subscription
+</h2>
+
+<input
+id="customer"
+placeholder="Customer Name"
+class="border p-3 rounded w-full mb-4">
+
+<input
+id="plan"
+placeholder="Plan"
+class="border p-3 rounded w-full mb-4">
+
+<input
+id="price"
+placeholder="Price"
+type="number"
+class="border p-3 rounded w-full mb-4">
+
+<select
+id="status"
+class="border p-3 rounded w-full mb-4">
+
+<option>Active</option>
+<option>Expired</option>
+
+</select>
+
+<div class="flex justify-end gap-3">
+
+<button
+onclick="closeModal()"
+class="bg-gray-500 text-white px-4 py-2 rounded">
+Cancel
+</button>
+
+<button
+onclick="addSubscription()"
+class="bg-blue-600 text-white px-4 py-2 rounded">
+Save
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+    const search = document.getElementById("search");
+
+search.addEventListener("input", () => {
+    const value = search.value.toLowerCase();
+
+    displayData(
+        subscriptions.filter(item =>
+            item.customer.toLowerCase().includes(value) ||
+            item.service.toLowerCase().includes(value) ||
+            item.email.toLowerCase().includes(value)
+        )
+    );
+});
+if(confirm("Delete this subscription?")){
+    deleteSubscription(id);
+}
+
+function saveData(){
+
+localStorage.setItem(
+"subscriptions",
+JSON.stringify(subscriptions)
+);
+
+}
+
+let subscriptions =
+JSON.parse(localStorage.getItem("subscriptions")) || [];
+const today = new Date();
+
+const renewal = new Date(item.nextRenewal);
+
+const diff =
+(renewal-today)/(1000*60*60*24);
+
+if(diff<=5){
+
+// reminder
+
+}
+
+document.body.classList.toggle("dark");
+
+
+localStorage.setItem("theme","dark");
+
+const theme = localStorage.getItem("theme");
+
+if(theme=="dark"){
+document.documentElement.classList.add("dark");
+}
+const data =
+JSON.stringify(subscriptions);
+
+const blob =
+new Blob([data]);
+
+const url =
+URL.createObjectURL(blob);
+
+const a =
+document.createElement("a");
+
+a.href=url;
+
+a.download="subscriptions.json";
+
+a.click();
+
+const reader=new FileReader();
+
+reader.onload=(e)=>{
+
+subscriptions=
+JSON.parse(e.target.result);
+
+saveData();
+
+}
+
+
+
+
+{
+customer:"Manoj",
+plan:"Netflix",
+price:499,
+status:"Active"
+},
+
+{
+customer:"Rahul",
+plan:"Spotify",
+price:199,
+status:"Expired"
+},
+
+{
+customer:"Priya",
+plan:"Amazon Prime",
+price:999,
+status:"Active"
+}
+
+];
+
+function save(){
+
+localStorage.setItem(
+"subscriptions",
+JSON.stringify(subscriptions)
+);
+
+render();
+
+}
+
+function render(){
+
+let table=document.getElementById("tableBody");
+
+table.innerHTML="";
+
+let revenue=0;
+
+let active=0;
+
+let expired=0;
+
+subscriptions.forEach((item,index)=>{
+
+revenue+=Number(item.price);
+
+if(item.status=="Active"){
+
+active++;
+
+}else{
+
+expired++;
+
+}
+
+table.innerHTML+=`
+
+<tr class="border-b">
+
+<td class="p-4">${item.customer}</td>
+
+<td class="text-center">${item.plan}</td>
+
+<td class="text-center">₹${item.price}</td>
+
+<td class="text-center">
+
+<span class="${
+item.status=="Active"
+?"text-green-600"
+:"text-red-600"
+} font-bold">
+
+${item.status}
+
+</span>
+
+</td>
+
+<td class="text-center">
+
+<button
+onclick="removeSubscription(${index})"
+class="bg-red-500 text-white px-3 py-1 rounded">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+document.getElementById("totalPlans").innerText=subscriptions.length;
+
+document.getElementById("monthlyRevenue").innerText="₹"+revenue;
+
+document.getElementById("activeUsers").innerText=active;
+
+document.getElementById("expiredPlans").innerText=expired;
+
+}
+
+function addSubscription(){
+
+let customer=document.getElementById("customer").value;
+
+let plan=document.getElementById("plan").value;
+
+let price=document.getElementById("price").value;
+
+let status=document.getElementById("status").value;
+
+if(customer==""||plan==""||price==""){
+
+alert("Please Fill All Fields");
+
+return;
+
+}
+
+subscriptions.push({
+
+customer,
+
+plan,
+
+price,
+
+status
+
+});
+
+save();
+
+closeModal();
+
+document.getElementById("customer").value="";
+
+document.getElementById("plan").value="";
+
+document.getElementById("price").value="";
+
+}
+
+function removeSubscription(index){
+
+subscriptions.splice(index,1);
+
+save();
+
+}
+
+function openModal(){
+
+document.getElementById("modal").classList.remove("hidden");
+
+document.getElementById("modal").classList.add("flex");
+
+}
+
+function closeModal(){
+
+document.getElementById("modal").classList.add("hidden");
+
+document.getElementById("modal").classList.remove("flex");
+
+}
+
+document.getElementById("search").addEventListener("keyup",function(){
+
+let value=this.value.toLowerCase();
+
+let rows=document.querySelectorAll("#tableBody tr");
+
+rows.forEach(row=>{
+
+row.style.display=row.innerText.toLowerCase().includes(value)
+?"":"none";
+
+});
+
+});
+
+render();
+
+</script>
+
+</body>
+</html>
