@@ -1,531 +1,875 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SubTrack - Subscription Billing Management</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<script src="https://cdn.tailwindcss.com"></script>
+    <title>SubTrack - Subscription Billing Management</title>
 
-<style>
-body{
-font-family:Arial, Helvetica, sans-serif;
-}
-</style>
+    <script src="https://cdn.tailwindcss.com"></script>
 
+    <script>
+        tailwind.config = {
+            darkMode: "class"
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-gray-100 dark:bg-slate-950 text-gray-900 dark:text-white">
 
 <div class="flex min-h-screen">
 
-<!-- Sidebar -->
+    <!-- ================= SIDEBAR ================= -->
 
-<div class="w-64 bg-slate-900 text-white p-6 hidden md:block">
+    <aside class="w-64 bg-slate-900 text-white p-6 hidden md:block">
 
-<h1 class="text-3xl font-bold mb-10 text-center">
-SubTrack
-</h1>
+        <h1 class="text-3xl font-bold mb-10 text-center">
+            SubTrack
+        </h1>
 
-<ul class="space-y-5">
+        <ul class="space-y-3">
 
-<li class="bg-blue-600 p-3 rounded cursor-pointer">
-Dashboard
-</li>
+            <li class="bg-blue-600 p-3 rounded cursor-pointer">
+                Dashboard
+            </li>
 
-<li class="hover:bg-slate-700 p-3 rounded cursor-pointer">
-Recent
-</li>
+            <li class="hover:bg-slate-700 p-3 rounded cursor-pointer">
+                Recent
+            </li>
 
-<li class="hover:bg-slate-700 p-3 rounded cursor-pointer">
-Subscriptions
-</li>
+            <li class="hover:bg-slate-700 p-3 rounded cursor-pointer">
+                Subscriptions
+            </li>
 
-<li class="hover:bg-slate-700 p-3 rounded cursor-pointer">
-Billing
-</li>
+            <li class="hover:bg-slate-700 p-3 rounded cursor-pointer">
+                Billing
+            </li>
 
-<li class="hover:bg-slate-700 p-3 rounded cursor-pointer">
-Reports
-</li>
+            <li class="hover:bg-slate-700 p-3 rounded cursor-pointer">
+                Reports
+            </li>
 
-<li class="hover:bg-slate-700 p-3 rounded cursor-pointer">
-Settings
-</li>
+            <li class="hover:bg-slate-700 p-3 rounded cursor-pointer">
+                Settings
+            </li>
 
-</ul>
+        </ul>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="flex-1">
+
+        <!-- NAVBAR -->
+
+        <nav class="bg-white dark:bg-slate-900 shadow p-5 
+                    flex flex-col lg:flex-row 
+                    justify-between items-center gap-4">
+
+            <div>
+                <h2 class="text-2xl font-bold">
+                    Subscription Billing Dashboard
+                </h2>
+
+                <p class="text-gray-500 dark:text-gray-400 text-sm">
+                    Manage your subscriptions and billing
+                </p>
+            </div>
+
+            <div class="flex gap-3 flex-wrap">
+
+                <!-- Search -->
+
+                <input
+                    id="search"
+                    type="text"
+                    placeholder="Search..."
+                    class="border dark:border-slate-700 
+                           dark:bg-slate-800 
+                           dark:text-white
+                           rounded-lg px-4 py-2 outline-none"
+                >
+
+                <!-- Dark Mode -->
+
+                <button
+                    onclick="toggleDarkMode()"
+                    class="bg-slate-800 text-white px-4 py-2 rounded-lg 
+                           hover:bg-slate-700">
+                    🌙
+                </button>
+
+                <!-- Export -->
+
+                <button
+                    onclick="exportData()"
+                    class="bg-green-600 text-white px-4 py-2 rounded-lg 
+                           hover:bg-green-700">
+                    Export
+                </button>
+
+                <!-- Add -->
+
+                <button
+                    onclick="openModal()"
+                    class="bg-blue-600 text-white px-5 py-2 rounded-lg 
+                           hover:bg-blue-700">
+                    + Add Subscription
+                </button>
+
+            </div>
+
+        </nav>
+
+
+        <!-- ================= DASHBOARD CARDS ================= -->
+
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
+
+            <!-- Total Plans -->
+
+            <div class="bg-white dark:bg-slate-900 
+                        rounded-xl shadow p-6">
+
+                <h3 class="text-gray-500 dark:text-gray-400">
+                    Total Plans
+                </h3>
+
+                <h1
+                    id="totalPlans"
+                    class="text-4xl font-bold mt-3">
+                    0
+                </h1>
+
+            </div>
+
+
+            <!-- Revenue -->
+
+            <div class="bg-white dark:bg-slate-900 
+                        rounded-xl shadow p-6">
+
+                <h3 class="text-gray-500 dark:text-gray-400">
+                    Monthly Revenue
+                </h3>
+
+                <h1
+                    id="monthlyRevenue"
+                    class="text-4xl font-bold mt-3">
+                    ₹0
+                </h1>
+
+            </div>
+
+
+            <!-- Active -->
+
+            <div class="bg-white dark:bg-slate-900 
+                        rounded-xl shadow p-6">
+
+                <h3 class="text-gray-500 dark:text-gray-400">
+                    Active Users
+                </h3>
+
+                <h1
+                    id="activeUsers"
+                    class="text-4xl font-bold mt-3">
+                    0
+                </h1>
+
+            </div>
+
+
+            <!-- Expired -->
+
+            <div class="bg-white dark:bg-slate-900 
+                        rounded-xl shadow p-6">
+
+                <h3 class="text-gray-500 dark:text-gray-400">
+                    Expired
+                </h3>
+
+                <h1
+                    id="expiredPlans"
+                    class="text-4xl font-bold mt-3">
+                    0
+                </h1>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= TABLE ================= -->
+
+        <section class="p-6">
+
+            <div class="bg-white dark:bg-slate-900 
+                        rounded-xl shadow overflow-auto">
+
+                <table class="w-full min-w-[800px]">
+
+                    <thead class="bg-slate-900 dark:bg-black text-white">
+
+                        <tr>
+
+                            <th class="p-4 text-left">
+                                Customer
+                            </th>
+
+                            <th class="p-4 text-center">
+                                Plan
+                            </th>
+
+                            <th class="p-4 text-center">
+                                Price
+                            </th>
+
+                            <th class="p-4 text-center">
+                                Renewal
+                            </th>
+
+                            <th class="p-4 text-center">
+                                Status
+                            </th>
+
+                            <th class="p-4 text-center">
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tableBody"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
 
 </div>
 
-<!-- Main -->
 
-<div class="flex-1">
-
-<!-- Navbar -->
-
-<div class="bg-white shadow p-5 flex justify-between items-center">
-
-<h2 class="text-2xl font-bold">
-Subscription Billing Dashboard
-</h2>
-
-<div class="flex gap-3">
-
-<input
-id="search"
-type="text"
-placeholder="Search..."
-class="border rounded-lg px-4 py-2"
-/>
-
-<button
-onclick="openModal()"
-class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700">
-Add Subscription
-</button>
-
-</div>
-
-</div>
-
-<!-- Cards -->
-
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
-
-<div class="bg-white rounded-xl shadow p-6">
-
-<h3 class="text-gray-500">
-Total Plans
-</h3>
-
-<h1 id="totalPlans" class="text-4xl font-bold mt-3">
-0
-</h1>
-
-</div>
-
-<div class="bg-white rounded-xl shadow p-6">
-
-<h3 class="text-gray-500">
-Monthly Revenue
-</h3>
-
-<h1 id="monthlyRevenue" class="text-4xl font-bold mt-3">
-₹0
-</h1>
-
-</div>
-
-<div class="bg-white rounded-xl shadow p-6">
-
-<h3 class="text-gray-500">
-Active Users
-</h3>
-
-<h1 id="activeUsers" class="text-4xl font-bold mt-3">
-0
-</h1>
-
-</div>
-
-<div class="bg-white rounded-xl shadow p-6">
-
-<h3 class="text-gray-500">
-Expired
-</h3>
-
-<h1 id="expiredPlans" class="text-4xl font-bold mt-3">
-0
-</h1>
-
-</div>
-
-</div>
-
-<!-- Table -->
-
-<div class="p-6">
-
-<div class="bg-white rounded-xl shadow overflow-auto">
-
-<table class="w-full">
-
-<thead class="bg-slate-900 text-white">
-
-<tr>
-
-<th class="p-4 text-left">
-Customer
-</th>
-
-<th class="p-4">
-Plan
-</th>
-
-<th class="p-4">
-Price
-</th>
-
-<th class="p-4">
-Status
-</th>
-
-<th class="p-4">
-Action
-</th>
-
-</tr>
-
-</thead>
-
-<tbody id="tableBody">
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- Modal -->
+<!-- ================= ADD MODAL ================= -->
 
 <div
-id="modal"
-class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center">
+    id="modal"
+    class="fixed inset-0 bg-black bg-opacity-50 
+           hidden items-center justify-center p-4">
 
-<div class="bg-white p-6 rounded-xl w-96">
+    <div class="bg-white dark:bg-slate-900 
+                dark:text-white
+                p-6 rounded-xl w-full max-w-md">
 
-<h2 class="text-2xl font-bold mb-5">
-Add Subscription
-</h2>
+        <h2 class="text-2xl font-bold mb-5">
+            Add Subscription
+        </h2>
 
-<input
-id="customer"
-placeholder="Customer Name"
-class="border p-3 rounded w-full mb-4">
 
-<input
-id="plan"
-placeholder="Plan"
-class="border p-3 rounded w-full mb-4">
+        <!-- Customer -->
 
-<input
-id="price"
-placeholder="Price"
-type="number"
-class="border p-3 rounded w-full mb-4">
+        <input
+            id="customer"
+            placeholder="Customer Name"
+            class="border dark:border-slate-700
+                   dark:bg-slate-800
+                   w-full p-3 rounded mb-4 outline-none"
+        >
 
-<select
-id="status"
-class="border p-3 rounded w-full mb-4">
 
-<option>Active</option>
-<option>Expired</option>
+        <!-- Email -->
 
-</select>
+        <input
+            id="email"
+            type="email"
+            placeholder="Customer Email"
+            class="border dark:border-slate-700
+                   dark:bg-slate-800
+                   w-full p-3 rounded mb-4 outline-none"
+        >
 
-<div class="flex justify-end gap-3">
 
-<button
-onclick="closeModal()"
-class="bg-gray-500 text-white px-4 py-2 rounded">
-Cancel
-</button>
+        <!-- Plan -->
 
-<button
-onclick="addSubscription()"
-class="bg-blue-600 text-white px-4 py-2 rounded">
-Save
-</button>
+        <input
+            id="plan"
+            placeholder="Plan Name"
+            class="border dark:border-slate-700
+                   dark:bg-slate-800
+                   w-full p-3 rounded mb-4 outline-none"
+        >
+
+
+        <!-- Price -->
+
+        <input
+            id="price"
+            placeholder="Price"
+            type="number"
+            min="1"
+            class="border dark:border-slate-700
+                   dark:bg-slate-800
+                   w-full p-3 rounded mb-4 outline-none"
+        >
+
+
+        <!-- Renewal -->
+
+        <label class="text-sm text-gray-500">
+            Renewal Date
+        </label>
+
+        <input
+            id="nextRenewal"
+            type="date"
+            class="border dark:border-slate-700
+                   dark:bg-slate-800
+                   w-full p-3 rounded mb-4 outline-none"
+        >
+
+
+        <!-- Status -->
+
+        <select
+            id="status"
+            class="border dark:border-slate-700
+                   dark:bg-slate-800
+                   w-full p-3 rounded mb-5">
+
+            <option value="Active">
+                Active
+            </option>
+
+            <option value="Expired">
+                Expired
+            </option>
+
+        </select>
+
+
+        <!-- Buttons -->
+
+        <div class="flex justify-end gap-3">
+
+            <button
+                onclick="closeModal()"
+                class="bg-gray-500 text-white px-4 py-2 rounded">
+                Cancel
+            </button>
+
+            <button
+                onclick="addSubscription()"
+                class="bg-blue-600 text-white px-4 py-2 rounded 
+                       hover:bg-blue-700">
+                Save
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
 
-</div>
-
-</div>
 
 <script>
 
-    const search = document.getElementById("search");
+/* =====================================================
+   INITIAL DATA
+===================================================== */
 
-search.addEventListener("input", () => {
-    const value = search.value.toLowerCase();
+const defaultSubscriptions = [
 
-    displayData(
-        subscriptions.filter(item =>
-            item.customer.toLowerCase().includes(value) ||
-            item.service.toLowerCase().includes(value) ||
-            item.email.toLowerCase().includes(value)
-        )
-    );
-});
-if(confirm("Delete this subscription?")){
-    deleteSubscription(id);
-}
+    {
+        customer: "Manoj",
+        email: "manoj@example.com",
+        plan: "Netflix",
+        price: 499,
+        status: "Active",
+        nextRenewal: "2026-08-15"
+    },
 
-function saveData(){
+    {
+        customer: "Rahul",
+        email: "rahul@example.com",
+        plan: "Spotify",
+        price: 199,
+        status: "Expired",
+        nextRenewal: "2026-07-20"
+    },
 
-localStorage.setItem(
-"subscriptions",
-JSON.stringify(subscriptions)
-);
-
-}
-
-let subscriptions =
-JSON.parse(localStorage.getItem("subscriptions")) || [];
-const today = new Date();
-
-const renewal = new Date(item.nextRenewal);
-
-const diff =
-(renewal-today)/(1000*60*60*24);
-
-if(diff<=5){
-
-// reminder
-
-}
-
-document.body.classList.toggle("dark");
-
-
-localStorage.setItem("theme","dark");
-
-const theme = localStorage.getItem("theme");
-
-if(theme=="dark"){
-document.documentElement.classList.add("dark");
-}
-const data =
-JSON.stringify(subscriptions);
-
-const blob =
-new Blob([data]);
-
-const url =
-URL.createObjectURL(blob);
-
-const a =
-document.createElement("a");
-
-a.href=url;
-
-a.download="subscriptions.json";
-
-a.click();
-
-const reader=new FileReader();
-
-reader.onload=(e)=>{
-
-subscriptions=
-JSON.parse(e.target.result);
-
-saveData();
-
-}
-
-
-
-
-{
-customer:"Manoj",
-plan:"Netflix",
-price:499,
-status:"Active"
-},
-
-{
-customer:"Rahul",
-plan:"Spotify",
-price:199,
-status:"Expired"
-},
-
-{
-customer:"Priya",
-plan:"Amazon Prime",
-price:999,
-status:"Active"
-}
+    {
+        customer: "Priya",
+        email: "priya@example.com",
+        plan: "Amazon Prime",
+        price: 999,
+        status: "Active",
+        nextRenewal: "2026-08-12"
+    }
 
 ];
 
-function save(){
 
-localStorage.setItem(
-"subscriptions",
-JSON.stringify(subscriptions)
-);
+/* =====================================================
+   LOAD DATA FROM LOCAL STORAGE
+===================================================== */
 
-render();
+let subscriptions =
+    JSON.parse(localStorage.getItem("subscriptions")) ||
+    defaultSubscriptions;
 
-}
 
-function render(){
+/* =====================================================
+   SAVE DATA
+===================================================== */
 
-let table=document.getElementById("tableBody");
+function saveData() {
 
-table.innerHTML="";
-
-let revenue=0;
-
-let active=0;
-
-let expired=0;
-
-subscriptions.forEach((item,index)=>{
-
-revenue+=Number(item.price);
-
-if(item.status=="Active"){
-
-active++;
-
-}else{
-
-expired++;
+    localStorage.setItem(
+        "subscriptions",
+        JSON.stringify(subscriptions)
+    );
 
 }
 
-table.innerHTML+=`
 
-<tr class="border-b">
+/* =====================================================
+   RENDER TABLE
+===================================================== */
 
-<td class="p-4">${item.customer}</td>
+function render(data = subscriptions) {
 
-<td class="text-center">${item.plan}</td>
+    const table =
+        document.getElementById("tableBody");
 
-<td class="text-center">₹${item.price}</td>
+    table.innerHTML = "";
 
-<td class="text-center">
+    let revenue = 0;
+    let active = 0;
+    let expired = 0;
 
-<span class="${
-item.status=="Active"
-?"text-green-600"
-:"text-red-600"
-} font-bold">
 
-${item.status}
+    data.forEach((item, index) => {
 
-</span>
+        revenue += Number(item.price);
 
-</td>
 
-<td class="text-center">
+        if (item.status === "Active") {
+            active++;
+        } else {
+            expired++;
+        }
 
-<button
-onclick="removeSubscription(${index})"
-class="bg-red-500 text-white px-3 py-1 rounded">
 
-Delete
+        /* Renewal Reminder */
 
-</button>
+        let reminder = "";
 
-</td>
+        if (item.nextRenewal) {
 
-</tr>
+            const today = new Date();
 
-`;
+            const renewal =
+                new Date(item.nextRenewal);
 
-});
+            const diff =
+                Math.ceil(
+                    (renewal - today) /
+                    (1000 * 60 * 60 * 24)
+                );
 
-document.getElementById("totalPlans").innerText=subscriptions.length;
 
-document.getElementById("monthlyRevenue").innerText="₹"+revenue;
+            if (diff >= 0 && diff <= 5) {
 
-document.getElementById("activeUsers").innerText=active;
+                reminder =
+                    `<span class="text-orange-500 text-xs block mt-1">
+                        ⚠ Renewal soon
+                    </span>`;
 
-document.getElementById("expiredPlans").innerText=expired;
+            }
+
+        }
+
+
+        table.innerHTML += `
+
+            <tr class="border-b dark:border-slate-700
+                       hover:bg-gray-50 dark:hover:bg-slate-800">
+
+                <td class="p-4">
+
+                    <div class="font-semibold">
+                        ${item.customer}
+                    </div>
+
+                    <div class="text-xs text-gray-500">
+                        ${item.email || ""}
+                    </div>
+
+                </td>
+
+
+                <td class="text-center">
+                    ${item.plan}
+                </td>
+
+
+                <td class="text-center font-semibold">
+                    ₹${Number(item.price).toLocaleString("en-IN")}
+                </td>
+
+
+                <td class="text-center">
+
+                    ${item.nextRenewal || "N/A"}
+
+                    ${reminder}
+
+                </td>
+
+
+                <td class="text-center">
+
+                    <span
+                        class="${
+                            item.status === "Active"
+                            ? "bg-green-100 text-green-700"
+                            : "bg-red-100 text-red-700"
+                        }
+                        px-3 py-1 rounded-full text-sm font-bold">
+
+                        ${item.status}
+
+                    </span>
+
+                </td>
+
+
+                <td class="text-center">
+
+                    <button
+                        onclick="removeSubscription(${index})"
+                        class="bg-red-500 hover:bg-red-600
+                               text-white px-3 py-1 rounded">
+
+                        Delete
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+
+    /* Dashboard */
+
+    document.getElementById("totalPlans").innerText =
+        data.length;
+
+    document.getElementById("monthlyRevenue").innerText =
+        "₹" + revenue.toLocaleString("en-IN");
+
+    document.getElementById("activeUsers").innerText =
+        active;
+
+    document.getElementById("expiredPlans").innerText =
+        expired;
 
 }
 
-function addSubscription(){
 
-let customer=document.getElementById("customer").value;
+/* =====================================================
+   ADD SUBSCRIPTION
+===================================================== */
 
-let plan=document.getElementById("plan").value;
+function addSubscription() {
 
-let price=document.getElementById("price").value;
+    const customer =
+        document.getElementById("customer").value.trim();
 
-let status=document.getElementById("status").value;
+    const email =
+        document.getElementById("email").value.trim();
 
-if(customer==""||plan==""||price==""){
+    const plan =
+        document.getElementById("plan").value.trim();
 
-alert("Please Fill All Fields");
+    const price =
+        document.getElementById("price").value;
 
-return;
+    const status =
+        document.getElementById("status").value;
+
+    const nextRenewal =
+        document.getElementById("nextRenewal").value;
+
+
+    /* Validation */
+
+    if (
+        customer === "" ||
+        email === "" ||
+        plan === "" ||
+        price === "" ||
+        nextRenewal === ""
+    ) {
+
+        alert("Please fill all fields.");
+
+        return;
+
+    }
+
+
+    /* Add object */
+
+    subscriptions.push({
+
+        customer: customer,
+
+        email: email,
+
+        plan: plan,
+
+        price: Number(price),
+
+        status: status,
+
+        nextRenewal: nextRenewal
+
+    });
+
+
+    /* Save */
+
+    saveData();
+
+    /* Refresh */
+
+    render();
+
+    /* Close */
+
+    closeModal();
+
+    /* Clear */
+
+    document.getElementById("customer").value = "";
+
+    document.getElementById("email").value = "";
+
+    document.getElementById("plan").value = "";
+
+    document.getElementById("price").value = "";
+
+    document.getElementById("nextRenewal").value = "";
 
 }
 
-subscriptions.push({
 
-customer,
+/* =====================================================
+   DELETE SUBSCRIPTION
+===================================================== */
 
-plan,
+function removeSubscription(index) {
 
-price,
+    const confirmation =
+        confirm("Delete this subscription?");
 
-status
 
-});
+    if (!confirmation) {
+        return;
+    }
 
-save();
 
-closeModal();
+    subscriptions.splice(index, 1);
 
-document.getElementById("customer").value="";
+    saveData();
 
-document.getElementById("plan").value="";
-
-document.getElementById("price").value="";
-
-}
-
-function removeSubscription(index){
-
-subscriptions.splice(index,1);
-
-save();
+    render();
 
 }
 
-function openModal(){
 
-document.getElementById("modal").classList.remove("hidden");
+/* =====================================================
+   OPEN MODAL
+===================================================== */
 
-document.getElementById("modal").classList.add("flex");
+function openModal() {
+
+    const modal =
+        document.getElementById("modal");
+
+    modal.classList.remove("hidden");
+
+    modal.classList.add("flex");
 
 }
 
-function closeModal(){
 
-document.getElementById("modal").classList.add("hidden");
+/* =====================================================
+   CLOSE MODAL
+===================================================== */
 
-document.getElementById("modal").classList.remove("flex");
+function closeModal() {
+
+    const modal =
+        document.getElementById("modal");
+
+    modal.classList.add("hidden");
+
+    modal.classList.remove("flex");
 
 }
 
-document.getElementById("search").addEventListener("keyup",function(){
 
-let value=this.value.toLowerCase();
+/* =====================================================
+   SEARCH
+===================================================== */
 
-let rows=document.querySelectorAll("#tableBody tr");
+document
+    .getElementById("search")
+    .addEventListener("input", function () {
 
-rows.forEach(row=>{
+        const value =
+            this.value.toLowerCase().trim();
 
-row.style.display=row.innerText.toLowerCase().includes(value)
-?"":"none";
 
-});
+        const filtered =
+            subscriptions.filter(item =>
 
-});
+                item.customer
+                    .toLowerCase()
+                    .includes(value)
+
+                ||
+
+                item.plan
+                    .toLowerCase()
+                    .includes(value)
+
+                ||
+
+                (item.email || "")
+                    .toLowerCase()
+                    .includes(value)
+
+                ||
+
+                item.status
+                    .toLowerCase()
+                    .includes(value)
+
+            );
+
+
+        render(filtered);
+
+    });
+
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+function toggleDarkMode() {
+
+    document.documentElement
+        .classList.toggle("dark");
+
+
+    const isDark =
+        document.documentElement
+            .classList.contains("dark");
+
+
+    localStorage.setItem(
+        "theme",
+        isDark ? "dark" : "light"
+    );
+
+}
+
+
+/* Load saved theme */
+
+const savedTheme =
+    localStorage.getItem("theme");
+
+
+if (savedTheme === "dark") {
+
+    document.documentElement
+        .classList.add("dark");
+
+}
+
+
+/* =====================================================
+   EXPORT DATA
+===================================================== */
+
+function exportData() {
+
+    const data =
+        JSON.stringify(
+            subscriptions,
+            null,
+            2
+        );
+
+
+    const blob =
+        new Blob(
+            [data],
+            {
+                type: "application/json"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+
+    const a =
+        document.createElement("a");
+
+
+    a.href = url;
+
+    a.download =
+        "subscriptions.json";
+
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    document.body.removeChild(a);
+
+    URL.revokeObjectURL(url);
+
+}
+
+
+/* =====================================================
+   INITIAL RENDER
+===================================================== */
 
 render();
 
